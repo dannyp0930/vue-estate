@@ -3,7 +3,7 @@
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
   <div v-for="product in products" :key="product.id">
-    <img :src="require(`./assets/room${product.id}.jpg`)"/>
+    <img :src="require(`./assets/room${product.id}.jpg`)" class="room-img"/>
     <h4>{{ product.name }}</h4>
     <p>{{ product.price}} 만원</p>
     <button @click="increase(product.id)">허위매물신고</button>
@@ -50,5 +50,9 @@ export default {
 .menu a {
   color: white;
   padding: 10px;
+}
+.room-img {
+  width: 100%;
+  margin-top: 40px;
 }
 </style>
