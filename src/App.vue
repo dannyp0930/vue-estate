@@ -12,32 +12,24 @@
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
   <div v-for="product in products" :key="product.id">
-    <img :src="require(`./assets/room${product.id}.jpg`)" class="room-img"/>
-    <h4 @click="modalOpen = true">{{ product.name }}</h4>
-    <p>{{ product.price}} 만원</p>
-    <button @click="increase(product.id)">허위매물신고</button>
-    <span>신고수 : {{ product.report }}</span>
+    <img :src="product.image" class="room-img"/>
+    <h4 @click="modalOpen = true">{{ product.title }}</h4>
+    <p>{{ product.price }}원</p>
   </div>
 </template>
 
 <script>
+import products from './assets/oneroom';
 export default {
   name: 'App',
   data() {
     return {
       modalOpen : false,
       menus : ['Home', 'Shop', 'About'],
-      products : [
-          { id: 0, name: '역삼동원룸', price: 60, report: 0 },
-          { id: 1, name: '천호동원룸', price: 50, report: 0 },
-          { id: 2, name: '마포구원룸', price: 70, report: 0 },
-      ],
+      products : products,
     }
   },
   methods: {
-    increase(id) {
-      this.products[id].report++;
-    }
   },
   components: {
   }
