@@ -1,20 +1,20 @@
 <template>
-  <!-- Modal -->
-  <div class="black-bg" v-if="modalOpen">
+  <!-- Content -->
+  <div class="black-bg" v-if="isModalOpen">
     <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용</p>
-      <button @click="modalOpen = false">닫기</button>
+      <h4>{{ products[clickedRoom].title }}</h4>
+      <p>{{ products[clickedRoom].content }}</p>
+      <button @click="isModalOpen = false">닫기</button>
     </div>
   </div>
-  <!-- Content -->
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
   <div v-for="product in products" :key="product.id">
     <img :src="product.image" class="room-img"/>
-    <h4 @click="modalOpen = true">{{ product.title }}</h4>
+    <h4 @click="modalOpen(product.id)">{{ product.title }}</h4>
     <p>{{ product.price }}원</p>
+    <!-- Modal -->
   </div>
 </template>
 
@@ -24,12 +24,17 @@ export default {
   name: 'App',
   data() {
     return {
-      modalOpen : false,
+      isModalOpen : false,
+      clickedRoom: 0,
       menus : ['Home', 'Shop', 'About'],
       products : products,
     }
   },
   methods: {
+    modalOpen(id) {
+      this.isModalOpen = true
+      this.clickedRoom = id
+    }
   },
   components: {
   }
