@@ -3,7 +3,7 @@
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
   <div v-for="product in products" :key="product.id">
-    <img :src="product.imgUrl"/>
+    <img :src="require(`./assets/room${product.id}.jpg`)"/>
     <h4>{{ product.name }}</h4>
     <p>{{ product.price}} 만원</p>
     <button @click="increase(product.id)">허위매물신고</button>
@@ -18,9 +18,9 @@ export default {
     return {
       menus : ['Home', 'Shop', 'About'],
       products : [
-          { id: 0, name: '역삼동원룸', price: 60, report: 0, imgUrl: require('./assets/room0.jpg') },
-          { id: 1, name: '천호동원룸', price: 50, report: 0, imgUrl: require('./assets/room1.jpg') },
-          { id: 2, name: '마포구원룸', price: 70, report: 0, imgUrl: require('./assets/room2.jpg') },
+          { id: 0, name: '역삼동원룸', price: 60, report: 0 },
+          { id: 1, name: '천호동원룸', price: 50, report: 0 },
+          { id: 2, name: '마포구원룸', price: 70, report: 0 },
         ],
     }
   },
