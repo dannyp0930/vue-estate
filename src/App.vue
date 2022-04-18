@@ -1,5 +1,5 @@
 <template>
-  <!-- Content -->
+  <!-- Modal -->
   <div class="black-bg" v-if="isModalOpen">
     <div class="white-bg">
       <h4>{{ products[clickedRoom].title }}</h4>
@@ -7,19 +7,23 @@
       <button @click="isModalOpen = false">닫기</button>
     </div>
   </div>
+  <!-- navbar -->
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
+  <!-- Discount Banner -->
+  <Discount />
   <div v-for="product in products" :key="product.id">
     <img :src="product.image" class="room-img"/>
     <h4 @click="modalOpen(product.id)">{{ product.title }}</h4>
     <p>{{ product.price }}원</p>
-    <!-- Modal -->
   </div>
 </template>
 
 <script>
 import products from './assets/oneroom';
+import Discount from './components/DiscountBanner'
+
 export default {
   name: 'App',
   data() {
@@ -37,7 +41,8 @@ export default {
     }
   },
   components: {
-  }
+    Discount: Discount
+  },
 }
 </script>
 
@@ -53,13 +58,13 @@ div {
   height: 100%;
   background: rgb(0, 0, 0, 0.5);
   position: fixed;
-  padding: 20px;
+  padding: 1rem;
 }
 .white-bg {
   width: 100%;
   background: white;
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 0.5rem;
+  padding: 2rem;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -70,8 +75,7 @@ div {
 }
 .menu {
   background-color: darkslateblue;
-  padding: 15px;
-  border-radius: 5px;
+  padding: 1rem;
 }
 .menu a {
   color: white;
@@ -79,6 +83,6 @@ div {
 }
 .room-img {
   width: 100%;
-  margin-top: 40px;
+  margin-top: 2rem;
 }
 </style>
